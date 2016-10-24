@@ -180,78 +180,10 @@
 </div>
 
 <!--Bootstrap--->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="bootstrap/bootstrap-datepicker.de.js" charset="UTF-8"></script>
-<!--JS consular las tablas de hechos realizadas-->
-<script type="text/javascript" src="js/obtener_tablas_hechos.js"></script>
-<!--JS para el apartado de "Crear tabla de hechos"-->
-<script type="text/javascript" src="js/obtener_bases_datos_cth.js"></script>
-<script type="text/javascript" src="js/obtener_tablas_cth.js"></script>
-<script type="text/javascript" src="js/obtener_atributos_cth.js"></script>
-<script type="text/javascript" src="js/crear_tabla_hechos.js"></script>
-<!--JS para el apartado de "Cambiar nombre de tabla de hechos"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_cnth.js"></script>
-<script type="text/javascript" src="js/modificar_nombre_tabla_hechos.js"></script>
-<!--JS para el apartado de "Eliminar tabla de hechos"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_eth.js"></script>
-<script type="text/javascript" src="js/eliminar_tabla_hechos.js"></script>
-<!--JS para el apartado de "Agregar hecho a tabla de hechos"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_ahth.js"></script>
-<script type="text/javascript" src="js/obtener_bases_datos_ahth.js"></script>
-<script type="text/javascript" src="js/obtener_tablas_ahth.js"></script>
-<script type="text/javascript" src="js/obtener_atributos_ahth.js"></script>
-<script type="text/javascript" src="js/agregar_hecho_tabla_hechos.js"></script>
-<!--JS para el apartado de "Eliminar hecho de tabla de hechos"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_ehth.js"></script>
-<script type="text/javascript" src="js/obtener_hechos_ehth.js"></script>
-<script type="text/javascript" src="js/eliminar_hecho_tabla_hechos.js"></script>
-
-<!--JS para el apartado de "Crear dimencion de la tabla de hechos"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_cdth.js"></script>
-<script type="text/javascript" src="js/obtener_bases_datos_cdth.js"></script>
-<script type="text/javascript" src="js/obtener_tablas_cdth.js"></script>
-<script type="text/javascript" src="js/obtener_atributos_cdth.js"></script>
-<script type="text/javascript" src="js/crear_dimencion_tabla_hechos.js"></script>
-
-<!-- JS para el apartado de "Cambiar nombre de dimension" -->
-
-<!-- JS para el apartado de "Cambiar nombre de dimension" -->
-<script type="text/javascript" src="js/obtener_tablas_hechos_cndth.js"></script>
-<script type="text/javascript" src="js/obtener_dimenciones_cndth.js"></script>
-<script type="text/javascript" src="js/modificar_nombre_dimencion.js"></script>
-
-<!-- JS para el apartado de "Eliminar dimension" -->
-
-<!-- JS para el apartado de "Eliminar dimension" -->
-<script type="text/javascript" src="js/obtener_tablas_hechos_edth.js"></script>
-<script type="text/javascript" src="js/obtener_dimenciones_edth.js"></script>
-<script type="text/javascript" src="js/eliminar_dimencion.js"></script>
-
-<!--JS para el apartado de "Crear medida de dimencion"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_cmd.js"></script>
-<script type="text/javascript" src="js/obtener_dimenciones_cmd.js"></script>
-<script type="text/javascript" src="js/crear_medida_dimencion_tabla_hechos.js"></script>
-<!--JS para el apartado de "Cambiar el nombre de medida de dimencion"-->
-<!--JS para el apartado de "Cambiar el nombre de medida de dimencion"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_cnmd.js"></script>
-<script type="text/javascript" src="js/obtener_dimenciones_cnmd.js"></script>
-<script type="text/javascript" src="js/obtener_medidas_cnmd.js"></script>
-<script type="text/javascript" src="js/cambiar_nombre_medida_btn_cnmd.js"></script>
-
-<!--JS para el apartado de "Cambiar el tipo de medida de dimencion"-->
-<!--JS para el apartado de "Cambiar el tipo de medida de dimencion"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_ctdmd.js"></script>
-<script type="text/javascript" src="js/obtener_dimenciones_ctdmd.js"></script>
-<script type="text/javascript" src="js/obtener_medidas_ctdmd.js"></script>
-<script type="text/javascript" src="js/cambiar_tipo_dato_medida_btn_ctdmd.js"></script>
-
-<!--JS para el apartado de "Cambiar el tipo de medida de dimencion"-->
-<!--JS para el apartado de "Cambiar el tipo de medida de dimencion"-->
-<script type="text/javascript" src="js/obtener_tablas_hechos_edmd.js"></script>
-<script type="text/javascript" src="js/obtener_dimenciones_edmd.js"></script>
-<script type="text/javascript" src="js/obtener_medidas_edmd.js"></script>
-<script type="text/javascript" src="js/eliminar_medida_btn_edmd.js"></script>
+<!--JS GENERAL-->
+<script type="text/javascript" src="js/script.js"></script>
 
 <!--JS para el apartado mostrar y ocultar peneles de herramientas-->
 <script type="text/javascript" src="js/mostrar_ocultar_paneles.js"></script>

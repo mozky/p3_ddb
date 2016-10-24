@@ -1,4 +1,5 @@
 function busca_bases_datos(){
+	console.log("Buscando bases de datos");
 	var database = document.getElementById("drop-basedatos");
 	var http_request = null;
 	if(window.XMLHttpRequest){
