@@ -78,6 +78,23 @@ function loadAtributes(obj, option){
 
 }
 
+function setTriggers(){
+	$("#h_drop_A").on("change", function() {
+		$("#h_drop_O").prop("disabled", false);
+		$('.selectpicker').selectpicker('refresh');
+	});
+
+	$("#h_drop_O").on("change", function() {
+		$("#h_box_V").prop("disabled", false);
+		$('.selectpicker').selectpicker('refresh');
+	});
+
+	$("#h_box_V").on("change", function() {
+		$("#h_btn_G").prop("disabled", false);
+	});
+}
+
 $(document).ready(function() {
 	loadDBs();
+	setTriggers();
 });
