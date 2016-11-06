@@ -75,27 +75,51 @@
                           <div class="panel-body">
                             <div class="row">
                               <div class="col-sm-12">
-                                <select class="form-control selectpicker" id="h_drop_BD" onchange="loadTables(this, 'h')" title="Selecciona una base de datos..."></select>
+                                <select class="form-control selectpicker" id="h_drop_BD" onchange="loadTables(this, 'h')" title="Selecciona una base de datos..." disabled></select>
                               </div>
                             </div>
                             <br />
                             <div class="row">
                               <div class="col-sm-12">
-                                <select class="form-control selectpicker" id="h_drop_T" title="Selecciona una tabla..." disabled></select>
+                                <select class="form-control selectpicker" id="h_drop_T" onchange="loadAtributes(this, 'h')" title="Selecciona una tabla..." disabled></select>
                               </div>
                             </div>
                           </div>
-                          <table id="v_tabla_bd" class="table hidden">
+                          <table id="h_tabla_bd" class="table hidden">
                           </table>
                         </div>
                       </div>
                       <div class="col-sm-12">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <h3 class="panel-title">Numero de Fragmentos</h3>
+                            <h3 class="panel-title">Generar Predicados Simples</h3>
                           </div>
                           <div class="panel-body">
-                            <select class="form-control selectpicker" title="Selecciona la relacion..."></select>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <form>
+                                  <div class="row form-group">
+                                    <label for="h_drop_A" class="col-sm-2 control-label">Atributo</label>
+                                    <div class="col-sm-10">
+                                      <select id="h_drop_A" class="form-control selectpicker" title="Selecciona un atributo..." disabled></select>
+                                    </div>
+                                  </div>
+                                  <div class="row form-group">
+                                    <label for="h_operador" class="col-sm-2 control-label">Operador</label>
+                                    <div class="col-sm-10">
+                                      <select id="h_operador" class="form-control selectpicker" title="Selecciona un operador..." disabled></select>
+                                    </div>
+                                  </div>
+                                  <div class="row form-group">
+                                    <label for="valor" class="col-sm-2 control-label">Valor</label>
+                                    <div class="col-sm-10">
+                                      <input type="text" class="form-control" id="valor" placeholder="Ingresa un valor..." disabled>
+                                    </div>
+                                  </div>
+                                  <button class="btn btn-default" disabled>Generar</button>
+                                </form>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -169,16 +193,18 @@
                           <div class="panel-body">
                             <div class="row">
                               <div class="col-sm-12">
-                                <select class="form-control selectpicker" id="v_drop_BD" onchange="loadTables(this, 'v')" title="Selecciona una base de datos..."></select>
+                                <select class="form-control selectpicker" id="v_drop_BD" onchange="loadTables(this, 'v')" title="Selecciona una base de datos..." disabled></select>
                               </div>
                             </div>
                             <br />
                             <div class="row">
                               <div class="col-sm-12">
-                                <select class="form-control selectpicker" id="v_drop_T" title="Selecciona una tabla..." disabled></select>
+                                <select class="form-control selectpicker" id="v_drop_T" onchange="loadAtributes(this, 'v')" title="Selecciona una tabla..." disabled></select>
                               </div>
                             </div>
                           </div>
+                          <table id="v_tabla_bd" class="table hidden">
+                          </table>
                         </div>
                       </div>
                       <div class="col-sm-12">
@@ -187,7 +213,19 @@
                             <h3 class="panel-title">Numero de Fragmentos</h3>
                           </div>
                           <div class="panel-body">
-                            <select class="form-control selectpicker" title="Selecciona la relacion..."></select>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="input-group number-spinner">
+                                  <span class="input-group-btn data-dwn">
+                                    <button class="btn btn-default btn-info" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                                  </span>
+                                  <input type="text" class="form-control text-center" value="1" min="1" max="10">
+                                  <span class="input-group-btn data-up">
+                                    <button class="btn btn-default btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -197,7 +235,7 @@
                             <h3 class="panel-title">Definir Atributo</h3>
                           </div>
                           <div class="panel-body">
-                            <select class="form-control selectpicker" title="Selecciona la relacion..."></select>
+                            <select class="form-control selectpicker" id="v_drop_A" title="Selecciona atributos..." multiple disabled></select>
                           </div>
                         </div>
                       </div>
@@ -265,6 +303,7 @@
   <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="js/number-selector.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
 
 </body>
