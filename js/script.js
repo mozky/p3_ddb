@@ -78,6 +78,65 @@ function loadAtributes(obj, option){
 
 }
 
+function generarPredicados(){
+	var inverso = {
+		"==": "<>",
+		"<>": "==",
+		">=": "<",
+		"<=": ">",
+		">": "<=",
+		"<": ">="
+	}
+
+	var predicado = {
+		"atributo": $("#h_drop_A").val(),
+		"operador": $("#h_drop_O").val(),
+		"valor": $("#h_box_V").val()
+	}
+
+	$("#h_tabla_predicados").append(
+		"<tr><td>" +
+		"P" +
+		"</td><td>" +
+		predicado.atributo +
+		"</td><td>" +
+		predicado.operador +
+		"</td><td>" +
+		predicado.valor +
+		"</td></tr>"
+	);
+
+	$("#h_tabla_minis").append(
+		"<tr><td>" +
+		"PM" +
+		"</td><td>" +
+		predicado.atributo +
+		"</td><td>" +
+		predicado.operador +
+		"</td><td>" +
+		predicado.valor +
+		"</td></tr>" +
+		"<tr><td>" +
+		"PMX" +
+		"</td><td>" +
+		predicado.atributo +
+		"</td><td>" +
+		inverso[predicado.operador] +
+		"</td><td>" +
+		predicado.valor +
+		"</td></tr>"
+	);
+
+	$("#h_tabla_minis > tbody > tr").on("click", function(){
+		miniterminos.push($(this).text());
+		console.log(miniterminos);
+	});
+}
+
+function enviarMinis() {
+	alert("Falta crear las consultas para enviar el contenido de 'miniterminos' a la base de datos del sitio seleccionado");
+}
+
 function setTriggers(){
 	$("#h_drop_A").on("change", function() {
 		$("#h_drop_O").prop("disabled", false);
@@ -92,9 +151,14 @@ function setTriggers(){
 	$("#h_box_V").on("change", function() {
 		$("#h_btn_G").prop("disabled", false);
 	});
+
+	$("#h_drop_S").on("change", function() {
+		$("#h_btn_E").prop("disabled", false);
+	});
 }
 
 $(document).ready(function() {
 	loadDBs();
 	setTriggers();
+	window.miniterminos = [];
 });

@@ -113,7 +113,7 @@
                                         <option value="<=">&lt;=</option>
                                         <option value=">=">&gt;=</option>
                                         <option value="==">==</option>
-                                        <option value="&lt;&gt;">&lt;&gt;</option>
+                                        <option value="<>">&lt;&gt;</option>
                                       </select>
                                     </div>
                                   </div>
@@ -123,7 +123,7 @@
                                       <input type="text" class="form-control" id="h_box_V" placeholder="Ingresa un valor..." disabled>
                                     </div>
                                   </div>
-                                  <button id="h_btn_G" class="btn btn-default" disabled>Generar</button>
+                                  <button type="button" id="h_btn_G" onclick="generarPredicados() " class="btn btn-default" disabled>Generar</button>
                                 </form>
                               </div>
                             </div>
@@ -140,7 +140,7 @@
                           <div class="panel-heading">
                             <h3 class="panel-title">Predicados Simples</h3>
                           </div>
-                          <table class="table">
+                          <table class="table" id="h_tabla_predicados">
                             <thead>
                               <tr>
                                 <th>#</th>
@@ -150,18 +150,6 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>P1</td>
-                                <td>nombre</td>
-                                <td>=</td>
-                                <td>Javier</td>
-                              </tr>
-                              <tr>
-                                <td>P2</td>
-                                <td>edad</td>
-                                <td>&lt;</td>
-                                <td>30</td>
-                              </tr>
                             </tbody>
                           </table>
                         </div>
@@ -169,12 +157,20 @@
                       <div class="col-sm-12">
                         <div class="panel panel-default">
                           <div class="panel-heading">
-                            <h3 class="panel-title">Generar predicados miniterminos</h3>
+                            <h3 class="panel-title">Predicados Miniterminos</h3>
                           </div>
-                          <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                          </div>
+                          <table class="table" id="h_tabla_minis">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Atributo</th>
+                                <th>Operacion</th>
+                                <th>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
                         </div>
                       </div>
                       <div class="col-sm-12">
@@ -185,14 +181,14 @@
                           <div class="panel-body">
                             <div class="row">
                               <div class="col-sm-10">
-                                <select class="form-control selectpicker" title="Selecciona sitio..." disabled>
+                                <select id="h_drop_S" class="form-control selectpicker" title="Selecciona sitio...">
                                   <option value="1">Sitio 1</option>
                                   <option value="2">Sitio 2</option>
                                   <option value="3">Sitio 3</option>
                                 </select>
                               </div>
                               <div class="col-sm-2">
-                                <button id="h_btn_E" class="btn btn-default" disabled>Enviar</button>
+                                <button id="h_btn_E" class="btn btn-default" onclick="enviarMinis()" disabled>Enviar</button>
                               </div>
                             </div>
                           </div>
@@ -302,7 +298,11 @@
                             <h3 class="panel-title">Colocación de Fragmentos</h3>
                           </div>
                           <div class="panel-body">
-                            <select class="form-control selectpicker" title="Selecciona sitio..."></select>
+                            <select class="form-control selectpicker" title="Selecciona sitio...">
+                              <option value="1">Sitio 1</option>
+                              <option value="2">Sitio 2</option>
+                              <option value="3">Sitio 3</option>
+                            </select>
                           </div>
                         </div>
                       </div>
