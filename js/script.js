@@ -79,6 +79,34 @@ function loadAtributes(obj, option){
 }
 
 function generarPredicados(){
+	var predicado = {
+		"atributo": $("#h_drop_A").val(),
+		"operador": $("#h_drop_O").val(),
+		"valor": $("#h_box_V").val()
+	}
+
+	$("#h_tabla_predicados").append(
+		"<tr onclick='agregarSimple(this)'><td>" +
+		predicado.atributo +
+		"</td><td>" +
+		predicado.operador +
+		"</td><td>" +
+		predicado.valor +
+		"</td></tr>"
+	);
+}
+
+function agregarSimple(th) {
+	simples.push($(th).text());
+	countSimples += 1;
+	if(countSimples == 2)
+		generarMiniterminos();
+}
+
+function generarMiniterminos(){
+
+// jalar los dos valores de simples y hacer la multipliacion
+
 	var inverso = {
 		"==": "<>",
 		"<>": "==",
@@ -88,38 +116,20 @@ function generarPredicados(){
 		"<": ">="
 	}
 
-	var predicado = {
-		"atributo": $("#h_drop_A").val(),
-		"operador": $("#h_drop_O").val(),
-		"valor": $("#h_box_V").val()
-	}
-
-	$("#h_tabla_predicados").append(
-		"<tr><td>" +
-		predicado.atributo +
-		"</td><td>" +
-		predicado.operador +
-		"</td><td>" +
-		predicado.valor +
-		"</td></tr>"
-	);
-
 	$("#h_tabla_minis").append(
 		"<tr><td>" +
-		predicado.atributo +
+		"prueba" +
 		"</td><td>" +
-		predicado.operador +
+		"==" +
 		"</td><td>" +
-		predicado.valor +
+		"prueba" +
 		"</td></tr>" +
 		"<tr><td>" +
-		"PMX" +
+		"prueba" +
 		"</td><td>" +
-		predicado.atributo +
+		inverso["=="] +
 		"</td><td>" +
-		inverso[predicado.operador] +
-		"</td><td>" +
-		predicado.valor +
+		"prueba" +
 		"</td></tr>"
 	);
 
@@ -127,6 +137,7 @@ function generarPredicados(){
 		miniterminos.push($(this).text());
 		console.log(miniterminos);
 	});
+
 }
 
 function enviarMinis() {
@@ -151,10 +162,21 @@ function setTriggers(){
 	$("#h_drop_S").on("change", function() {
 		$("#h_btn_E").prop("disabled", false);
 	});
+
+	// $("#h_tabla_predicados > tbody > tr").on("click", function(){
+	// 	simples.push($(this).text());
+	// 	console.log($(this).text());
+	// 	countSimples += 1;
+	// 	if(countSimples == 2)
+	// 		generarMiniterminos();
+	// });
+
 }
 
 $(document).ready(function() {
 	loadDBs();
 	setTriggers();
 	window.miniterminos = [];
+	window.simples = [];
+	window.countSimples = 0;
 });
