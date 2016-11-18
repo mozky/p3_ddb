@@ -96,8 +96,6 @@ function generarPredicados(){
 
 	$("#h_tabla_predicados").append(
 		"<tr><td>" +
-		"P" +
-		"</td><td>" +
 		predicado.atributo +
 		"</td><td>" +
 		predicado.operador +
@@ -108,8 +106,6 @@ function generarPredicados(){
 
 	$("#h_tabla_minis").append(
 		"<tr><td>" +
-		"PM" +
-		"</td><td>" +
 		predicado.atributo +
 		"</td><td>" +
 		predicado.operador +
