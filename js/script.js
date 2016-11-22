@@ -78,15 +78,15 @@ function loadAtributes(obj, option){
 
 }
 
-function generarPredicados(){
+function generarPredicados(option){
 	var predicado = {
-		"atributo": $("#h_drop_A").val(),
-		"operador": $("#h_drop_O").val(),
-		"valor": $("#h_box_V").val()
+		"atributo": $("#" + option + "_drop_A").val(),
+		"operador": $("#" + option + "_drop_O").val(),
+		"valor": $("#" + option + "_box_V").val()
 	}
 
 	$("#h_tabla_predicados").append(
-		"<tr onclick='agregarSimple(this)'><td>" +
+		"<tr onclick='agregarSimple(this, \""+ option + "\")'><td>" +
 		predicado.atributo +
 		"</td><td>" +
 		predicado.operador +
@@ -96,17 +96,17 @@ function generarPredicados(){
 	);
 }
 
-function agregarSimple(th) {
-	simples.push($(th).text());
+function agregarSimple(obj, option) {
+	// cambiar algo en la interfaz para que se vea que se selecciono un predicado
+	simples.push($(obj).text());
 	countSimples += 1;
 	if(countSimples == 2)
-		generarMiniterminos();
+		generarMiniterminos(option);
 }
 
-function generarMiniterminos(){
-
-// jalar los dos valores de simples y hacer la multipliacion
-
+function generarMiniterminos(option){
+	var basedatos = $("#"+option+"_drop_BD").val();
+	var tabla = $("#"+option+"_drop_T").val();
 	var inverso = {
 		"==": "<>",
 		"<>": "==",
@@ -116,27 +116,114 @@ function generarMiniterminos(){
 		"<": ">="
 	}
 
-	$("#h_tabla_minis").append(
-		"<tr><td>" +
-		"prueba" +
-		"</td><td>" +
-		"==" +
-		"</td><td>" +
-		"prueba" +
-		"</td></tr>" +
-		"<tr><td>" +
-		"prueba" +
-		"</td><td>" +
-		inverso["=="] +
-		"</td><td>" +
-		"prueba" +
-		"</td></tr>"
+	// Ciclo que construye el array miniterminos con los 4 predicados simples
+	for ( var i = 0; i < simples.length; i ++) {
+		var s;
+		if (simples[i].indexOf("==") > 0) {
+			s = simples[i].split("==");
+			s.push("==");
+		} else if (simples[i].indexOf("<>") > 0) {
+			s = simples[i].split("<>");
+			s.push("<>");
+		} else if (simples[i].indexOf("<=") > 0) {
+			s = simples[i].split("<=");
+			s.push("<=");
+		} else if (simples[i].indexOf(">=") > 0) {
+			s = simples[i].split(">=");
+			s.push(">=");
+		} else if (simples[i].indexOf("<") > 0) {
+			s = simples[i].split("<");
+			s.push("<");
+		} else if (simples[i].indexOf(">") > 0) {
+			s = simples[i].split(">");
+			s.push(">");
+		}
+		miniterminos.push(
+			{
+				"atributo" : s[0],
+				"operador" : s[2],
+				"predicado" : s[1]
+			}
+		)
+		miniterminos.push(
+			{
+				"atributo" : s[0],
+				"operador" : inverso[s[2]],
+				"predicado" : s[1]
+			}
+		)
+	}
+
+	console.log(miniterminos);
+	// Llamamos a count_query para ver si el count es mayor a 1
+	var hr1 = null;
+	var hr2 = null;
+
+	if(window.XMLHttpRequest){
+		hr1 = new XMLHttpRequest();
+		hr2 = new XMLHttpRequest();
+	}else{
+		if(window.ActiveXObject){
+			hr1 = new ActiveXObject("Microsoft.XMLHTTP");
+			hr2 = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+
+	hr1.onreadystatechange = function (){
+		if((hr1.readyState == 4) && (hr1.status == 200)){
+			console.log(hr1.responseText);
+		}
+	}
+
+	hr2.onreadystatechange = function (){
+		if((hr2.readyState == 4) && (hr2.status == 200)){
+			console.log(hr2.responseText);
+		}
+	}
+
+	hr1.open("POST", "php/count_query.php", true);
+	hr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	hr1.send(
+		"basedatos="+basedatos
+		+"&tabla="+tabla
+		+"&atributo="+miniterminos[0].atributo
+		+"&operador="+miniterminos[0].operador
+		+"&predicado="+miniterminos[0].predicado
 	);
 
-	$("#h_tabla_minis > tbody > tr").on("click", function(){
-		miniterminos.push($(this).text());
-		console.log(miniterminos);
-	});
+	hr2.open("POST", "php/count_query.php", true);
+	hr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	hr2.send(
+		"basedatos="+basedatos
+		+"&tabla="+tabla
+		+"&atributo="+miniterminos[1].atributo
+		+"&operador="+miniterminos[1].operador
+		+"&predicado="+miniterminos[1].predicado
+	);
+
+
+	// ONLY APPEND THE ONES THAT COUNT > 0
+	// $("#h_tabla_minis").append(
+	// 	"<tr><td>" +
+	// 	"prueba" +
+	// 	"</td><td>" +
+	// 	"==" +
+	// 	"</td><td>" +
+	// 	"prueba" +
+	// 	"</td></tr>" +
+	// 	"<tr><td>" +
+	// 	"prueba" +
+	// 	"</td><td>" +
+	// 	inverso["=="] +
+	// 	"</td><td>" +
+	// 	"prueba" +
+	// 	"</td></tr>"
+	// );
+	//
+	// $("#h_tabla_minis > tbody > tr").on("click", function(){
+	// 	miniterminos.push($(this).text());
+	// 	console.log(miniterminos);
+	// });
 
 }
 
