@@ -3,13 +3,16 @@
     include "conexion_servidor.php";
   	$basedatos = $_POST["basedatos"];
     $tabla = $_POST["tabla"];
-    $atributo = $_POST["atributo"];
-    $operador = $_POST["operador"];
-    $predicado = $_POST["predicado"];
+    $atr1 = $_POST["atr1"];
+    $ope1 = $_POST["ope1"];
+    $val1 = $_POST["val1"];
+    $atr2 = $_POST["atr2"];
+    $ope2 = $_POST["ope2"];
+    $val2 = $_POST["val2"];
     $result = "";
   	$sql = "USE $basedatos";
   	$conn->query($sql);
-    $sql = "SELECT COUNT(*) FROM $tabla WHERE $atributo $operador $predicado";
+    $sql = "SELECT COUNT(*) FROM $tabla WHERE $atr1 $ope1 $val1 AND $atr2 $ope2 $val2";
     foreach ($conn->query($sql) as $row){
       $result .= $row[0];
     }
