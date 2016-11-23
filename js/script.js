@@ -251,7 +251,6 @@ function generarMiniterminos(option){
 	// Ponemos un timeout de 1 seg para esperar los resultados de php
 
 	setTimeout(function(){
-		console.log(miniterminos);
 		for (var i = 0; i < miniterminos.length; i ++) {
 			$("#" + option + "_tabla_minis").append(
 				"<tr><td>" +
@@ -287,9 +286,36 @@ function generarMiniterminos(option){
 	// });
 }
 
-function enviarMinis() {
-	alert("Falta crear las consultas para enviar el contenido de 'miniterminos' a la base de datos del sitio seleccionado");
-}
+function enviarMinis(option) {
+	var basedatos = $("#"+option+"_drop_BD").val();
+	var tabla = $("#"+option+"_drop_T").val();
+	var fragmento = $("#" + option + "_drop_SM").val();
+	var sitio = $("#" + option + "_drop_S").val();
+
+	if(window.XMLHttpRequest){
+		http_request = new XMLHttpRequest();
+	}else{
+		if(window.ActiveXObject){
+			http_request = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+
+	http_request.onreadystatechange = function (){
+		alert("El fragmento ha sido enviado con exito al sitio");
+	}
+
+	http_request.open("POST", "php/insert_atributos.php", true);
+	http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http_request.send("basedatos="+basedatos
+										+"&tabla="+tabla
+										+"&sitio="+sitio
+										+"&atr1="+miniterminos[fragmento][1].atributo
+										+"&ope1="+miniterminos[fragmento][1].operador
+										+"&val1="+miniterminos[fragmento][1].valor
+										+"&atr2="+miniterminos[fragmento][2].atributo
+										+"&ope2="+miniterminos[fragmento][2].operador
+										+"&val2="+miniterminos[fragmento][2].valor);
+	}
 
 function setTriggers(){
 	$("#h_drop_A").on("change", function() {
