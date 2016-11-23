@@ -251,6 +251,7 @@ function generarMiniterminos(option){
 	// Ponemos un timeout de 1 seg para esperar los resultados de php
 
 	setTimeout(function(){
+		console.log(miniterminos);
 		for (var i = 0; i < miniterminos.length; i ++) {
 			$("#" + option + "_tabla_minis").append(
 				"<tr><td>" +
@@ -269,6 +270,13 @@ function generarMiniterminos(option){
 				miniterminos[i].count +
 				"</td></tr>"
 			);
+			$("#"+ option + "_drop_SM").append(
+				$('<option>', {
+    		value: i,
+    		text: miniterminos[i][1].atributo + " " + miniterminos[i][1].operador + " " + miniterminos[i][1].valor + " and " + miniterminos[i][2].atributo + " " + miniterminos[i][2].operador + " " + miniterminos[i][2].valor
+			}));
+			$("#"+ option + "_drop_SM").prop( "disabled", false );
+			$('.selectpicker').selectpicker('refresh');
 		}
 	}, 1000);
 
