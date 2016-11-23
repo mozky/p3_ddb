@@ -12,7 +12,7 @@
     $result = "";
   	$sql = "USE $basedatos";
   	$conn->query($sql);
-    $sql = "SELECT COUNT(*) FROM $tabla WHERE $atr1 $ope1 $val1 AND $atr2 $ope2 $val2";
+    $sql = "SELECT COUNT(*) FROM $tabla WHERE $atr1 $ope1 \"$val1\" AND $atr2 $ope2 \"$val2\"";
     foreach ($conn->query($sql) as $row){
       $result .= $row[0];
     }
