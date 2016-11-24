@@ -309,6 +309,7 @@ function enviarMinis(option) {
 	http_request.send("basedatos="+basedatos
 										+"&tabla="+tabla
 										+"&sitio="+sitio
+										+"&fragmento="+fragmento
 										+"&atr1="+miniterminos[fragmento][1].atributo
 										+"&ope1="+miniterminos[fragmento][1].operador
 										+"&val1="+miniterminos[fragmento][1].valor
