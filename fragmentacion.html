@@ -179,7 +179,7 @@
                           <div class="panel-body">
                             <div class="row">
                               <div class="col-sm-12">
-                                <select id="h_drop_SM" class="form-control selectpicker" title="Selecciona fragmento..." disabled ></select>
+                                <select id="h_drop_SM" class="form-control selectpicker" title="Selecciona fragmento..." disabled></select>
                               </div>
                             </div>
                             <br />
@@ -240,7 +240,7 @@
                                   <span class="input-group-btn data-dwn">
                                     <button class="btn btn-default btn-info" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                                   </span>
-                                  <input type="text" class="form-control text-center" value="1" min="1" max="10">
+                                  <input id='num_fragmentos' type="text" class="form-control text-center" value="2" min="2" max="99">
                                   <span class="input-group-btn data-up">
                                     <button class="btn btn-default btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
                                   </span>
@@ -250,48 +250,38 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-12">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Definir Atributo</h3>
-                          </div>
-                          <div class="panel-body">
-                            <select class="form-control selectpicker" id="v_drop_A" title="Selecciona atributos..." multiple disabled></select>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div class="col-sm-12 col-lg-6">
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Definir Atributos</h3>
+                          </div>
+                          <div class="panel-body">
+                            <select class="form-control selectpicker" id="v_drop_A" title="Selecciona atributos..." multiple disabled></select>
+                            <br></br>
+                            <button type="button" id="v_btn_G" onclick="generarFragmentoV()" class="btn btn-default">Generar Fragmento</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="panel panel-default">
                           <!-- Default panel contents -->
                           <div class="panel-heading">
-                            <h3 class="panel-title">Expresiones Algebraicas</h3>
+                            <h3 class="panel-title">Fragmentos</h3>
                           </div>
 
                           <!-- Table -->
-                          <table class="table">
+                          <table id="tabla_fragmentos_v" class="table">
                             <thead>
                               <tr>
                                 <th>#</th>
-                                <th>Expresion</th>
+                                <th>Atributos</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                              </tr>
-                              <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                              </tr>
                             </tbody>
                           </table>
                         </div>

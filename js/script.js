@@ -65,8 +65,17 @@ function loadAtributes(obj, option){
 	hr.onreadystatechange = function (){
 		if((hr.readyState == 4) && (hr.status == 200)){
 			$("#" + option + "_drop_A").html(hr.responseText).prop("disabled", false);
-			$('.selectpicker').selectpicker('refresh');		}
+			$('.selectpicker').selectpicker('refresh');
+			if (option == 'v') {
+				$("#v_drop_A > option").each(function() {
+					atributos.push({
+						'atributo': this.value,
+						'used': false
+					});
+				});
+			}
 		}
+	}
 
 	http_request.open("POST", "php/tabla_atributos.php", true);
 	http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -316,7 +325,52 @@ function enviarMinis(option) {
 										+"&atr2="+miniterminos[fragmento][2].atributo
 										+"&ope2="+miniterminos[fragmento][2].operador
 										+"&val2="+miniterminos[fragmento][2].valor);
+}
+
+function generarFragmentoV(){
+	var numFragmentos = $("#num_fragmentos").val();
+
+	// Solamente permitimos agregar si faltan fragmentos
+	if (fragmentos.length < (numFragmentos - 1)) {
+		var tmp = $("#v_drop_A").val() + '';
+		var seleccion = tmp.split(',');
+		var fragmento = [];
+		fragmento.push(atributos[0].atributo);
+		seleccion.forEach(function(atr) {
+			atributos.forEach(function(atr1) {
+				if (atr1.atributo == atr) {
+					atr1.used = true
+				}
+			})
+			if (atributos[0].atributo != atr) {
+				fragmento.push(atr);
+			}
+		});
+		fragmentos.push(fragmento);
 	}
+
+	// Si es el ultimo fragmento, rellenamos con los atributos faltantes
+	if (fragmentos.length == (numFragmentos - 1)) {
+		fragmento = [];
+		fragmento.push(atributos[0].atributo);
+		atributos.forEach(function(atr) {
+			if (atr.used == false ) {
+				fragmento.push(atr.atributo);
+			}
+		});
+		fragmentos.push(fragmento);
+		$("#v_drop_A").prop("disabled", true);
+		$("#v_btn_G").prop("disabled", true);
+
+		var tbody = '';
+		fragmentos.forEach(function(frag, index) {
+			tbody += "<tr><td>" + (index + 1) + "</td><td>" + frag.toString() + "</td></tr>";
+		});
+		$("#tabla_fragmentos_v > tbody").html(tbody);
+	}
+
+	console.log('Fragmentos',fragmentos);
+}
 
 function setTriggers(){
 	$("#h_drop_A").on("change", function() {
@@ -341,6 +395,8 @@ function setTriggers(){
 $(document).ready(function() {
 	loadDBs();
 	setTriggers();
+	window.atributos = [];
+	window.fragmentos = [];
 	window.miniterminos = [];
 	window.simples = [];
 	window.countSimples = 0;

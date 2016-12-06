@@ -18,7 +18,7 @@ function tabla_atributos(){
   					<tbody>';
 
     foreach ($conn->query($sql) as $row){
-		$atts .= "<tr>
+		$atts .= "<tr value=".$row[0].">
 					<td>".$row["Field"]."</td>
 					<td>".$row["Type"]."</td>
 					<td>".$row["Null"]."</td>
